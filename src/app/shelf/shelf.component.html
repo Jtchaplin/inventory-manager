@@ -1,9 +1,20 @@
 <div class="container">
   <!--<app-nav-bar></app-nav-bar>-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <h1 class="title is-italic has-text-black">Shelf List</h1>
+      <!-- mobile title with nav arrows -->
+      <h1 class="title has-text-centered has-text-black desktopHide" style="margin-top: 6px;">
+        <a [routerLink]="['/productlist']" class="navArrowLeft desktopHide"> <!-- left nav arrow -->
+         <i class="fas fa-chevron-left"></i>
+        </a>
+        Shelves
+        <a [routerLink]="['/supplierlist']" class="navArrowRight desktopHide"><!-- right nav arrow -->
+          <i class="fas fa-chevron-right"></i>
+       </a>
+       </h1>
   <input type="text" class="form-control" [(ngModel)]="searchtext"
          placeholder="Search">
+<!-- mobile info box-->
+  <p class="infoP desktopHide"><i class="fas fa-info-circle desktopHide infoIcon"></i>To view more about a product tap on the desired product </p>      
   <div class="panel">
     <div class="panel-block">
       <div class="shelves">
@@ -15,30 +26,30 @@
               <th>Product ID</th>
               <th>Location</th>
               <th>Status</th>
-              <th>Action</th>
+              <th class="mobileHide">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let shelf of shelves
               | wildcardSearchFilterPipe:['id','productId','location','status']:searchtext">
-              <td>{{ shelf.id }}</td>
-              <td>{{ shelf.productId }}</td>
-              <td>{{ shelf.location }}</td>
-              <td>{{ shelf.status }}</td>
-              <td>
-                <a [routerLink]="['/shelf-details', shelf._id]" class="btnDetail">
+              <td [routerLink]="['/shelf-details', shelf._id]" >{{ shelf.id }}</td>
+              <td [routerLink]="['/shelf-details', shelf._id]" >{{ shelf.productId }}</td>
+              <td [routerLink]="['/shelf-details', shelf._id]" >{{ shelf.location }}</td>
+              <td [routerLink]="['/shelf-details', shelf._id]" >{{ shelf.status }}</td>
+              <td class="mobileHide">
+                <a [routerLink]="['/shelf-details', shelf._id]" class="btnDetail mobileHide">
                   <i class="fas fa-eye"></i>
                   <span class="buttonText">&nbsp;Show Detail</span>
                 </a>
                 <ng-container *ngIf="userIsAdmin">
-                  <a [routerLink]="['/shelf-edit', shelf._id]" class="btnEdit">
+                  <a [routerLink]="['/shelf-edit', shelf._id]" class="btnEdit mobileHide">
                     <i class="fas fa-pencil-alt"></i>
                     <span class="buttonText">&nbsp;Edit</span>
                   </a>
                 </ng-container>
                 <ng-container *ngIf="userIsAdmin">
                   <button
-                    class="btnDelete"
+                    class="btnDelete mobileHide"
                     mwlConfirmationPopover
                     [popoverTitle]="popoverTitle"
                     [popoverMessage]="popoverMessage"
@@ -59,7 +70,15 @@
   </div>
       <!-- Add Button -->
   <ng-container *ngIf="userIsAdmin">
-    <button [routerLink]="['/shelf-create']" class="btnAdd">
+    <button [routerLink]="['/shelf-create']" class="btnAdd mobileHide">
+      <span class="fas fa-plus" aria-hidden="true"></span>
+      <span class="buttonText">&nbsp;Add Shelf</span>
+    </button>
+  </ng-container>
+
+   <!-- Add Button MOBILE -->
+   <ng-container *ngIf="userIsAdmin">
+    <button [routerLink]="['/shelf-create']" class="btnAddMobile desktopHide">
       <span class="fas fa-plus" aria-hidden="true"></span>
       <span class="buttonText">&nbsp;Add Shelf</span>
     </button>

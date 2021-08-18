@@ -67,15 +67,47 @@
   width: 100%;
 }
 
+/* Info Icon */ 
+.infoIcon{
+  color: #6F8BAB; 
+  width: 20px;
+  height: auto;
+  float: left;
+  margin: 5px;
+}
+
+.infoP {
+  border-style: inset;
+  border-color:#6F8BAB ;
+}
+
+
+/* Mobile Nav  */ 
+.navArrowLeft{
+  float: left;
+  width: 20px;
+  height: auto;
+}
+
+.navArrowRight{
+  float: right;
+  width: 20px;
+  height: auto;
+}
+
 /* Mobile  */ 
 @media screen and (max-width: 600px) {
   .mobileHide { 
     visibility: hidden;
-    width: 10px;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    font-size: 0px;
+    margin: 0px;
   }
 
   .mobileFontSize{
-    font-size: 25px;
+    font-size: 18px;
   }
 
   .mobileTableSize{
@@ -105,7 +137,11 @@
 @media screen and (min-width: 600px) {
   .desktopHide{ 
     visibility: hidden;
-    width: 10px;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    font-size: 0px;
+    margin: 0px;
   }
   .desktopTitleSize{
     font-size: 4em;
